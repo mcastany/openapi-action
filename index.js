@@ -154,7 +154,7 @@ async function exec () {
         const file = core.getInput('file', { required: true });
         let configuration_file = core.getInput('configurationFile', { required: false });
 
-        if (configuration_file === ''){
+        if (!configuration_file){
           configuration_file = undefined;
         }
 

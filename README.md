@@ -9,4 +9,5 @@ https://github.com/Redocly/openapi-cli
   with:
     github_token: ${{ secrets.GITHUB_TOKEN }}
     file: FILE_PATH
+    configuration_file: path
 ```

@@ -8,6 +8,12 @@ inputs:
   github_token:
     required: true
     description: 'GitHub Personal Access Token'
+  configuration_file:
+    required: false
+    description: 'Configuration file'
+  title:
+    required: false
+    description: 'Title used in github UI'
 runs:
   using: 'node12'
   main: 'dist/index.js'

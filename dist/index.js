@@ -2479,7 +2479,8 @@ function getAstNodeByPointer(root, pointer, reportOnKey) {
 async function exec () {
     try {
         const file = core.getInput('file', { required: true });
-        const config = await openapi.loadConfig(undefined);
+        const configuration_file = core.getInput('configurationFile', { required: false });
+        const config = await openapi.loadConfig(configuration_file);
         const lintData = await openapi.lint({
             ref: file,
             config: config
@@ -2505,7 +2506,7 @@ async function exec () {
         const octokit = new github.getOctokit(core.getInput('github_token', { required: true }));
         const owner = github.context.repo.owner;
         const repo = github.context.repo.repo;
-        const title = 'Open API Lint Check';
+        const title = core.getInput('title', { required: false }) || 'Open API Lint Check';
         const { failureCount, warningCount, noticeCount } = stats(findings);
         const conclusion = generateConclusion(failureCount, warningCount, noticeCount);
         const summary = generateSummary(failureCount, warningCount, noticeCount);

@@ -152,7 +152,12 @@ function getAstNodeByPointer(root, pointer, reportOnKey) {
 async function exec () {
     try {
         const file = core.getInput('file', { required: true });
-        const configuration_file = core.getInput('configurationFile', { required: false });
+        let configuration_file = core.getInput('configurationFile', { required: false });
+
+        if (configuration_file === ''){
+          configuration_file = undefined;
+        }
+
         const config = await openapi.loadConfig(configuration_file);
         const lintData = await openapi.lint({
             ref: file,
